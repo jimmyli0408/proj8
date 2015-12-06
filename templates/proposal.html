@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="en">
+<head>
+    <title>Appointments</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css" />
+        <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+        <link rel="stylesheet" type="text/css" href="/static/css/busy.css" />
+
+        <!-- The rest of our javascript dependencies are bundled and -->
+        <!-- 'minified' by 'browserify'  -->
+        <script type="text/javascript" src="/static/js/busy.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <b>Key: </b> {{ proposal.id }} <br/>
+        <b>Begin: </b> {{ proposal.begin }} <br/>
+        <b>End: </b> {{ proposal.end }} <br/>
+        <h3>Candidate times</h3>
+        <ul>
+            {% for t in free_times %}
+                <li>{{ t }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Avoiding conflicts with</h3>
+        <ul>
+            {% for e in events %}
+            <li>{{ e.start }} - {{ e.end}}: {{ e.summary }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

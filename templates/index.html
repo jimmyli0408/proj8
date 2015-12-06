@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="en">
+<head>
+    <title>Appointments</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css" />
+        <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+        <link rel="stylesheet" type="text/css" href="/static/css/busy.css" />
+
+        <!-- The rest of our javascript dependencies are bundled and -->
+        <!-- 'minified' by 'browserify'  -->
+        <script type="text/javascript" src="/static/js/busy.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Create a meeting proposal</h2>
+        <form action="/create" method="POST">
+            <br />
+            <label>Date:</label>
+            <input name="daterangevalue" value="{{ session.daterange }}" hidden/>
+            <input name="daterange" style="width:200px" />
+            <br />
+            <label>Time:</label>
+            From <input type="time" name="begin_time" value="{{ session.begin_time }}"/>
+            to <input type="time" name="end_time" value="{{ session.end_time }}" />
+            <br />
+            <button class="btn btn-primary btn-sm">Create</button>
+        </form>
+        <h2>List of proposal</h2>
+        <ul>
+            {% for p in proposals %}
+            <li>
+                <a href="/proposal?key={{ p.id }}">{{ p.id }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                {{ p.begin }} -- {{ p.end }}
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href="/delete?key={{ p.id }}">delete</a>
+
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
